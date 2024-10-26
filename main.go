@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
@@ -62,7 +65,16 @@ func main() {
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
 
-		fmt.Printf("These are all our bookings: %v\n", bookings)
+		//Define slice only for First Names
+		firstNames := []string{}
+
+		// Loop through or iterate through bookings list and grab firstName at a time
+		for _, booking := range bookings { // Get the index of the element and the value of the element from the bookings slice. The value will have firstName and lastName with a space character in between.
+			var names = strings.Fields(booking)       // Split booking value string on a space character using the Fields function from strings package. Results in a slice with two elements. Save it as names array.
+			firstNames = append(firstNames, names[0]) //Get the value of element at the index 0 and append it into firstNames slice
+		}
+
+		fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
 	}
 
